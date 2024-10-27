@@ -35,7 +35,7 @@ public class TeamsController : ControllerBase
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="command"></param>
-    /// <returns>An unique identifier of a newly created team</returns>
+    /// <returns>A unique identifier of the newly created team</returns>
     [HttpPost]
     public async Task<ActionResult<Guid>> Create(
         [FromServices] ISender sender,
