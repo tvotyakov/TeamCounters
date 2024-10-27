@@ -17,9 +17,14 @@ public class TeamsRepository : ITeamsRepository
 
     public ValueTask Delete(Guid id, CancellationToken cancellationToken = default)
     {
-        if (!Db.Teams.TryRemove(id, out _))
+        if (!Db.Teams.TryRemove(id, out var team))
         {
             throw new ApplicationException("Team has not been found");
+        }
+
+        foreach (var counter in team.Counters)
+        {
+            counter.Team = null;
         }
 
         return ValueTask.CompletedTask;
