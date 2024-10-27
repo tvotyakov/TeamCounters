@@ -5,8 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TeamCounters.Web.Api.Common;
 
+/// <summary>
+/// Custom exception handler for 404 Not Found responses
+/// </summary>
 public class NotFoundExceptionHandler : IExceptionHandler
 {
+    /// <inheritdoc/>
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
         if (exception is not NotFoundException)
