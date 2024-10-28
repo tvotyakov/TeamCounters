@@ -41,4 +41,13 @@ public class TeamsRepository : ITeamsRepository
     {
         return ValueTask.FromResult(Db.Teams.Values.AsEnumerable());
     }
+
+    public ValueTask<bool> IsExistByName(string name)
+    {
+        var isExist = Db.Teams
+            .Values
+            .Any(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+
+        return ValueTask.FromResult(isExist);
+    }
 }

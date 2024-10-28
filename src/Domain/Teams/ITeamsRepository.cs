@@ -1,4 +1,5 @@
 ﻿namespace TeamCounters.Domain.Teams;
+
 public interface ITeamsRepository
 {
     ValueTask<Team> Add(Team team, CancellationToken cancellationToken = default);
@@ -8,4 +9,6 @@ public interface ITeamsRepository
     ValueTask<Team?> GetById(Guid id, CancellationToken cancellationToken = default);
 
     ValueTask<IEnumerable<Team>> GetList();
+
+    ValueTask<bool> IsExistByName(string name);
 }

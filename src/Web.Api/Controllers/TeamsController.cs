@@ -118,7 +118,7 @@ public class TeamsController : ControllerBase
     {
         if (id != command.TeamId)
         {
-            return BadRequest("Value of team id in the query should be equal to teamId value in the request body");
+            return BadRequest("Value of team id in the request path should be equal to teamId value in the request body");
         }
 
         await sender.Send(command);
@@ -133,7 +133,7 @@ public class TeamsController : ControllerBase
     /// <param name="teamId"></param>
     /// <param name="counterId"></param>
     /// <response code="204">The counter was successfully removed from the team</response>
-    /// <response code="404">Either the team was not found or the counter was not found or the counter doesn't belong to the team</response>
+    /// <response code="404">Either the team or the counter was not found or the counter doesn't belong to the team</response>
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpDelete("{teamId:guid}/counters/{counterId:guid}")]

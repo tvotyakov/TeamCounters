@@ -4,6 +4,9 @@ using TeamCounters.Domain.Counters;
 namespace TeamCounters.Domain.Teams;
 public class Team : BaseEntity<Guid>
 {
+    public const int NameMinLength = 2;
+    public const int NameMaxLength = 500;
+
     private readonly List<Counter> _counters = [];
 
     public required string Name { get; init; }
