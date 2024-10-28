@@ -21,4 +21,13 @@ public sealed class CountersRepository : ICountersRepository
 
         return ValueTask.FromResult(counter);
     }
+
+    public ValueTask<bool> IsExistByName(string name)
+    {
+        var isExist = Db.Counters
+            .Values
+            .Any(x => x.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+
+        return ValueTask.FromResult(isExist);
+    }
 }

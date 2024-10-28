@@ -2,6 +2,7 @@
 
 using FluentValidation;
 
+using MediatR;
 using MediatR.Pipeline;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ public static class DependencyInjectionConfig
         {
             conf.RegisterServicesFromAssemblyContaining(typeof(DependencyInjectionConfig));
             conf.AddRequestPreProcessor(typeof(IRequestPreProcessor<>), typeof(LoggingPreProcessing<>));
+            conf.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             conf.AddRequestPostProcessor(typeof(IRequestPostProcessor<,>), typeof(LoggingPostProcessing<,>));
         });
 

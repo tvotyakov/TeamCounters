@@ -7,6 +7,9 @@ namespace TeamCounters.Domain.Counters;
 
 public class Counter : BaseEntity<Guid>
 {
+    public const int NameMinLength = 2;
+    public const int NameMaxLength = 250;
+
     public required string Name { get; init; }
 
     public Team? Team { get; set; }

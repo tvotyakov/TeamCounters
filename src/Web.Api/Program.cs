@@ -20,6 +20,7 @@ builder.Services.Configure<RouteOptions>(options =>
 });
 
 builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
 
 builder.Services.AddControllers();
 
@@ -45,7 +46,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseExceptionHandler(opts => { });
+app.UseExceptionHandler("/error");
 
 app.UseAuthorization();
 

@@ -20,8 +20,11 @@ public class CountersController : ControllerBase
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="id"></param>
-    /// <returns></returns>
+    /// <response code="200">The counter's data</response>
+    /// <response code="404">The counter was not found</response>
     [HttpGet("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CounterDto>> GetById([FromServices] ISender sender, Guid id)
     {
         var counter = await sender.Send(new GetCounterByIdQuery(id));
@@ -64,7 +67,7 @@ public class CountersController : ControllerBase
     {
         if (id != command.CounterId)
         {
-            return BadRequest("Value of counter id in the query should be equal to counterId value in the request body");
+            return BadRequest("Value of counter id in the request path should be equal to counterId value in the request body");
         }
 
         var totalCount = await sender.Send(command);
