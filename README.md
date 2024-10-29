@@ -9,6 +9,17 @@ This project was created as a coding challenge for a job application.
 
 > Initially, the mental model of the project implied that the counters are step counters which are distributed among employees which are grouped in some teams. However currently the API doesn't have any restriction on this except that the counter values are positive integers. So, using this API you can put any meanings in the 'Counter' and 'Team' terms according to your needs.
 
+## Build and Run
+To build and run the solution you will need:
+* [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+
+Open solution directory and run dotnet CLI:
+```
+dotnet run --project .\src\Web.Api\
+```
+
+Open [https://localhost:7221/swagger/index.html](https://localhost:7221/swagger/index.html) link to get access to Swagger UI of this project.
+
 ## Architecture
 
 The application is built using ASP.NET 8 and C# language using a controller-based approach. This approach was chosen mostrly due to the application author's prior experience and familiarity with this style.
@@ -41,7 +52,7 @@ At the moment this layer is included only very simple custom-made in-memory stor
 * [MediatR](https://github.com/jbogard/MediatR)
 * [FluentValidation](https://fluentvalidation.net/)
 
-## What can be improved
+## What Can Be Improved
 
 There are many things that can be improved in this project. Some of them are:
 * Add tests. One of the main principles of the Clean Architecture is testability. However, the project doesn't have any tests at the moment.
