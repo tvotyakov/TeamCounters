@@ -57,6 +57,7 @@ At the moment this layer is included only very simple custom-made in-memory stor
 There are many things that can be improved in this project. Some of them are:
 * Add tests. One of the main principles of the Clean Architecture is testability. However, the project doesn't have any tests at the moment.
 * Add more validation. The project uses FluentValidation library for validation, but not all cases are covered.
+* Add pagination. Potentially there could be many counters and teams in the application. To decrease latency during working with this lists it would be greate to add some sort of pagination support to the appropriate API methods.
 
 ## License
 This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details.
