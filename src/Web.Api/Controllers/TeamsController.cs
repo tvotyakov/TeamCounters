@@ -56,6 +56,10 @@ public class TeamsController : ControllerBase
     /// <param name="sender"></param>
     /// <param name="command"></param>
     /// <returns>A unique identifier of the newly created team</returns>
+    /// <response code="201">The team was created successfully</response>
+    /// <response code="400">One or more errors have occured during team creation, e.g. validation errors</response>
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [HttpPost]
     public async Task<ActionResult<Guid>> Create(
         [FromServices] ISender sender,
@@ -63,7 +67,8 @@ public class TeamsController : ControllerBase
     {
         var teamId = await sender.Send(command);
 
-        return Ok(teamId);
+        // TODO: In some cases it may be more useful to return more information about created team than only its id
+        return CreatedAtAction(nameof(GetById), new { id = teamId }, teamId);
     }
 
     /// <summary>

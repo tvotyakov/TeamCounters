@@ -37,13 +37,19 @@ public class CountersController : ControllerBase
     /// <param name="sender"></param>
     /// <param name="command"></param>
     /// <returns>A unique identifier of the newly created counter</returns>
+    /// <response code="201">The counter was created successfully</response>
+    /// <response code="400">One or more errors have occured during counter creation, e.g. validation errors</response>
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [HttpPost]
     public async Task<ActionResult<Guid>> Create(
         [FromServices] ISender sender,
         [FromBody] CreateCounterCommand command)
     {
         var id = await sender.Send(command);
-        return Ok(id);
+
+        // TODO: In some cases it may be more useful to return more information about created counter than only its id
+        return CreatedAtAction(nameof(GetById), new { id }, id);
     }
 
     /// <summary>
